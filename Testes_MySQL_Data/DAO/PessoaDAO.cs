@@ -48,6 +48,49 @@ namespace Testes_MySQL_Data.DAO
 
         }
 
+        public List<PessoaModel> Select()
+        {
+
+            try
+            {
+
+                List<PessoaModel> lista_pessoas = new List<PessoaModel>();
+
+                string sql = "SELECT * FROM Pessoa";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                MySqlDataReader reader = stmt.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    lista_pessoas.Add(new PessoaModel(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2)));
+
+                }
+
+                return lista_pessoas;
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
     }
 
 }

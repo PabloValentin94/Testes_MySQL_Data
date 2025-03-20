@@ -12,18 +12,20 @@ namespace Testes_MySQL_Data.Model
     public class TransacaoModel
     {
 
-        public int id { get; set; } = 0;
+        public int id { get; set; }
 
-        public string? descricao { get; set; } = "";
+        public string? descricao { get; set; }
 
-        public double valor { get; set; } = 0.00;
+        public double valor { get; set; }
 
-        public string? tipo { get; set; } = "Despesa";
+        public string? tipo { get; set; }
 
-        public int fk_pessoa { get; set; } = 0;
+        public int fk_pessoa { get; set; }
 
-        public TransacaoModel(string descricao, double valor, string tipo, int fk_pessoa)
+        public TransacaoModel(int id = 0, string descricao = "", double valor = 0.00, string tipo = "Despesa", int fk_pessoa = 0)
         {
+
+            this.id = id;
 
             this.descricao = descricao;
 
@@ -39,6 +41,13 @@ namespace Testes_MySQL_Data.Model
         {
 
             return (new TransacaoDAO()).Insert(this);
+
+        }
+
+        public static List<TransacaoModel> List()
+        {
+
+            return (new TransacaoDAO()).Select();
 
         }
 

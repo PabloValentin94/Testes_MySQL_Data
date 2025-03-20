@@ -48,6 +48,49 @@ namespace Testes_MySQL_Data.DAO
 
         }
 
+        public List<TransacaoModel> Select()
+        {
+
+            try
+            {
+
+                List<TransacaoModel> lista_transacoes = new List<TransacaoModel>();
+
+                string sql = "SELECT * FROM Transacao";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                MySqlDataReader reader = stmt.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    lista_transacoes.Add(new TransacaoModel(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2), reader.GetString(3), reader.GetInt32(4)));
+
+                }
+
+                return lista_transacoes;
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
     }
 
 }
