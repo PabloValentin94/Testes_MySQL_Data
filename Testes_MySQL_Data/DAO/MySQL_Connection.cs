@@ -23,7 +23,7 @@ namespace Testes_MySQL_Data.DAO
 
             string user = "root";
 
-            string password = "";
+            string password = "etecjau";
 
             string database_name = "db_controle_gastos_residenciais";
 
@@ -52,6 +52,8 @@ namespace Testes_MySQL_Data.DAO
             {
 
                 this.conexao.Close();
+
+                this.conexao = null;
 
             }
 

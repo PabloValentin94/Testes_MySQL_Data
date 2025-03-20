@@ -22,11 +22,21 @@ namespace Testes_MySQL_Data.DAO
             try
             {
 
-                string sql = $"INSERT INTO Transacao(descricao, valor, tipo, fk_pessoa) VALUES('{model.descricao}', {model.valor}, '{model.tipo}', {model.fk_pessoa})";
+                string sql = "INSERT INTO Transacao(descricao, valor, tipo, fk_pessoa) VALUES(@descricao, @valor, @tipo, @fk_pessoa)";
 
                 MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
 
                 base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@descricao", model.descricao);
+
+                stmt.Parameters.AddWithValue("@valor", model.valor);
+
+                stmt.Parameters.AddWithValue("@tipo", model.tipo);
+
+                stmt.Parameters.AddWithValue("@fk_pessoa", model.fk_pessoa);
+
+                stmt.Prepare();
 
                 return (stmt.ExecuteNonQuery() > 0);
 

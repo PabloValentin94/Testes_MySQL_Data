@@ -22,11 +22,17 @@ namespace Testes_MySQL_Data.DAO
             try
             {
 
-                string sql = $"INSERT INTO Pessoa(nome, idade) VALUES('{model.nome}', {model.idade})";
+                string sql = "INSERT INTO Pessoa(nome, idade) VALUES(@nome, @idade)";
 
                 MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
 
                 base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@nome", model.nome);
+
+                stmt.Parameters.AddWithValue("@idade", model.idade);
+
+                stmt.Prepare();
 
                 return (stmt.ExecuteNonQuery() > 0);
 
