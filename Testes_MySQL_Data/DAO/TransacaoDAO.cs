@@ -66,7 +66,7 @@ namespace Testes_MySQL_Data.DAO
 
                 List<TransacaoModel> lista_transacoes = new List<TransacaoModel>();
 
-                string sql = "SELECT * FROM Transacao";
+                string sql = "SELECT * FROM Transacao ORDER BY id ASC";
 
                 MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
 

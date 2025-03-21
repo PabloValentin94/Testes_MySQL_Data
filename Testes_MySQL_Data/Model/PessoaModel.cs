@@ -43,6 +43,13 @@ namespace Testes_MySQL_Data.Model
 
         }
 
+        public static PessoaModel? Find(int id)
+        {
+
+            return (new PessoaDAO()).Search(id);
+
+        }
+
     }
 
 }

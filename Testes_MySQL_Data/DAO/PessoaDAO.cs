@@ -62,7 +62,7 @@ namespace Testes_MySQL_Data.DAO
 
                 List<PessoaModel> lista_pessoas = new List<PessoaModel>();
 
-                string sql = "SELECT * FROM Pessoa";
+                string sql = "SELECT * FROM Pessoa ORDER BY id ASC";
 
                 MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
 
@@ -78,6 +78,53 @@ namespace Testes_MySQL_Data.DAO
                 }
 
                 return lista_pessoas;
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
+        public PessoaModel? Search(int id)
+        {
+
+            try
+            {
+
+                PessoaModel? pessoa_retornada = null;
+
+                string sql = "SELECT * FROM Pessoa WHERE id = @id";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@id", id);
+
+                stmt.Prepare();
+
+                MySqlDataReader reader = stmt.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    pessoa_retornada = new PessoaModel(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2));
+
+                }
+
+                return pessoa_retornada;
 
             }
 

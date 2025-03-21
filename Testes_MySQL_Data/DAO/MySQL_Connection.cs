@@ -23,7 +23,7 @@ namespace Testes_MySQL_Data.DAO
 
             string user = "root";
 
-            string password = "etecjau";
+            string password = "";
 
             string database_name = "db_controle_gastos_residenciais";
 

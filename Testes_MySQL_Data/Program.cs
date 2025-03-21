@@ -16,6 +16,8 @@ catch (Exception ex)
 
 }
 
+Console.ReadKey();
+
 // Classe de testes.
 
 class Testes
@@ -39,6 +41,29 @@ class Testes
         {
 
             Console.WriteLine($"{pessoa.id} | {pessoa.nome} | {pessoa.idade}");
+
+        }
+
+    }
+
+    public static void Pesquisar_Pessoa(int id)
+    {
+
+        PessoaModel? model = PessoaModel.Find(id);
+
+        Console.WriteLine("Pessoa encontrada:\n");
+
+        if (model == null)
+        {
+
+            Console.WriteLine("Nenhuma.");
+
+        }
+
+        else
+        {
+
+            Console.WriteLine($"{model.id} | {model.nome} | {model.idade}");
 
         }
 
