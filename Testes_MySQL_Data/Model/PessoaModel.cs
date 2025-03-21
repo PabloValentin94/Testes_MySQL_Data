@@ -32,7 +32,9 @@ namespace Testes_MySQL_Data.Model
         public bool Save()
         {
 
-            return (new PessoaDAO()).Insert(this);
+            PessoaDAO dao = new PessoaDAO();
+
+            return (this.id == 0) ? dao.Insert(this) : dao.Update(this);
 
         }
 

@@ -58,6 +58,50 @@ namespace Testes_MySQL_Data.DAO
 
         }
 
+        public bool Update(TransacaoModel model)
+        {
+
+            try
+            {
+
+                string sql = "UPDATE Transacao SET descricao = @descricao, valor = @valor, tipo = @tipo, fk_pessoa = @fk_pessoa WHERE id = @id";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@descricao", model.descricao);
+
+                stmt.Parameters.AddWithValue("@valor", model.valor);
+
+                stmt.Parameters.AddWithValue("@tipo", model.tipo);
+
+                stmt.Parameters.AddWithValue("@fk_pessoa", model.fk_pessoa);
+
+                stmt.Parameters.AddWithValue("@id", model.id);
+
+                stmt.Prepare();
+
+                return (stmt.ExecuteNonQuery() > 0);
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
         public List<TransacaoModel> Select()
         {
 

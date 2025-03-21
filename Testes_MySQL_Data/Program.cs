@@ -34,6 +34,17 @@ class Testes
 
     }
 
+    public static void Edicao_Pessoa()
+    {
+
+        PessoaModel model = new PessoaModel(1, "Pablo Valentin", 19);
+
+        bool sucesso = model.Save();
+
+        Console.WriteLine("Pessoa editada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+
+    }
+
     public static void Listagem_Pessoas()
     {
 
@@ -46,10 +57,10 @@ class Testes
 
     }
 
-    public static void Pesquisar_Pessoa(int id)
+    public static void Pesquisa_Pessoa()
     {
 
-        PessoaModel? model = PessoaModel.Find(id);
+        PessoaModel? model = PessoaModel.Find(1);
 
         Console.WriteLine("Pessoa encontrada:\n");
 
@@ -77,6 +88,17 @@ class Testes
         bool sucesso = model.Save();
 
         Console.WriteLine("Transação cadastrada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+
+    }
+
+    public static void Edicao_Transacao()
+    {
+
+        TransacaoModel model = new TransacaoModel(1, "Testando edição...", 100.00, "Receita", 1);
+
+        bool sucesso = model.Save();
+
+        Console.WriteLine("Transação editada " + ((sucesso) ? "com" : "sem") + " sucesso.");
 
     }
 

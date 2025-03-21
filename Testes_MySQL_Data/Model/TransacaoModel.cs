@@ -40,7 +40,9 @@ namespace Testes_MySQL_Data.Model
         public bool Save()
         {
 
-            return (new TransacaoDAO()).Insert(this);
+            TransacaoDAO dao = new TransacaoDAO();
+
+            return (this.id == 0) ? dao.Insert(this) : dao.Update(this);
 
         }
 

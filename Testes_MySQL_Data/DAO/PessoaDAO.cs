@@ -54,6 +54,46 @@ namespace Testes_MySQL_Data.DAO
 
         }
 
+        public bool Update(PessoaModel model)
+        {
+
+            try
+            {
+
+                string sql = "UPDATE Pessoa SET nome = @nome, idade = @idade WHERE id = @id";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@nome", model.nome);
+
+                stmt.Parameters.AddWithValue("@idade", model.idade);
+
+                stmt.Parameters.AddWithValue("@id", model.id);
+
+                stmt.Prepare();
+
+                return (stmt.ExecuteNonQuery() > 0);
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
         public List<PessoaModel> Select()
         {
 
