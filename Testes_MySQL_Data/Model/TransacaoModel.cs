@@ -46,6 +46,13 @@ namespace Testes_MySQL_Data.Model
 
         }
 
+        public static bool Erase(int id)
+        {
+
+            return (new TransacaoDAO()).Delete(id);
+
+        }
+
         public static List<TransacaoModel> List()
         {
 

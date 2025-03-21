@@ -38,6 +38,13 @@ namespace Testes_MySQL_Data.Model
 
         }
 
+        public static bool Erase(int id)
+        {
+
+            return (new PessoaDAO()).Delete(id);
+
+        }
+
         public static List<PessoaModel> List()
         {
 

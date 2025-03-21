@@ -94,6 +94,42 @@ namespace Testes_MySQL_Data.DAO
 
         }
 
+        public bool Delete(int id)
+        {
+
+            try
+            {
+
+                string sql = "DELETE FROM Pessoa WHERE id = @id";
+
+                MySqlCommand stmt = new MySqlCommand(sql, base.conexao);
+
+                base.Abrir_Conexao();
+
+                stmt.Parameters.AddWithValue("@id", id);
+
+                stmt.Prepare();
+
+                return (stmt.ExecuteNonQuery() > 0);
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
+
+            finally
+            {
+
+                base.Fechar_Conexao();
+
+            }
+
+        }
+
         public List<PessoaModel> Select()
         {
 

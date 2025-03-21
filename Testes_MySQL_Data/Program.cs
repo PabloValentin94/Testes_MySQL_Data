@@ -30,7 +30,7 @@ class Testes
 
         bool sucesso = model.Save();
 
-        Console.WriteLine("Pessoa cadastrada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+        Console.WriteLine("Pessoa cadastrada " + ((sucesso) ? "com" : "sem") + " sucesso!");
 
     }
 
@@ -41,17 +41,52 @@ class Testes
 
         bool sucesso = model.Save();
 
-        Console.WriteLine("Pessoa editada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+        Console.WriteLine("Pessoa editada " + ((sucesso) ? "com" : "sem") + " sucesso!");
+
+    }
+
+    public static void Remocao_Pessoa()
+    {
+
+        bool sucesso = PessoaModel.Erase(1);
+
+        if (sucesso)
+        {
+
+            Console.WriteLine("Pessoa removida com sucesso! Todas as transações associadas também foram removidas.");
+
+        }
+
+        else
+        {
+
+            Console.WriteLine("Pessoa removida sem sucesso!");
+
+        }
 
     }
 
     public static void Listagem_Pessoas()
     {
 
-        foreach (PessoaModel pessoa in PessoaModel.List())
+        List<PessoaModel> lista_pessoas = PessoaModel.List();
+
+        if (lista_pessoas.Count > 0)
         {
 
-            Console.WriteLine($"{pessoa.id} | {pessoa.nome} | {pessoa.idade}");
+            foreach (PessoaModel pessoa in lista_pessoas)
+            {
+
+                Console.WriteLine($"{pessoa.id} | {pessoa.nome} | {pessoa.idade}");
+
+            }
+
+        }
+
+        else
+        {
+
+            Console.WriteLine("Nada a exibir.");
 
         }
 
@@ -87,7 +122,7 @@ class Testes
 
         bool sucesso = model.Save();
 
-        Console.WriteLine("Transação cadastrada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+        Console.WriteLine("Transação cadastrada " + ((sucesso) ? "com" : "sem") + " sucesso!");
 
     }
 
@@ -98,17 +133,40 @@ class Testes
 
         bool sucesso = model.Save();
 
-        Console.WriteLine("Transação editada " + ((sucesso) ? "com" : "sem") + " sucesso.");
+        Console.WriteLine("Transação editada " + ((sucesso) ? "com" : "sem") + " sucesso!");
+
+    }
+
+    public static void Remocao_Transacao()
+    {
+
+        bool sucesso = TransacaoModel.Erase(1);
+
+        Console.WriteLine("Transação removida " + ((sucesso) ? "com" : "sem") + " sucesso!");
 
     }
 
     public static void Listagem_Transacoes()
     {
 
-        foreach (TransacaoModel transacao in TransacaoModel.List())
+        List<TransacaoModel> lista_transacoes = TransacaoModel.List();
+
+        if (lista_transacoes.Count > 0)
         {
 
-            Console.WriteLine($"{transacao.id} | {transacao.descricao} | {transacao.valor} | {transacao.tipo} | {transacao.fk_pessoa}");
+            foreach (TransacaoModel transacao in lista_transacoes)
+            {
+
+                Console.WriteLine($"{transacao.id} | {transacao.descricao} | {transacao.valor} | {transacao.tipo} | {transacao.fk_pessoa}");
+
+            }
+
+        }
+
+        else
+        {
+
+            Console.WriteLine("Nada a exibir.");
 
         }
 
